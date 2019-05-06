@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title data-i18n="extensionName"></title>
+	<link rel="icon" href="/icons/icon.svg">
+	<link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+	<div id='service-workers'></div>
+	<div id='service-workers-empty' data-i18n="zeroRegistered"></div>
+	<template id='service-worker-template'>
+		<div class="service-worker">
+			<img class="icon icon-normal" src="icons/icon.svg">
+			<img class="icon icon-pending" src="icons/icon-pending.svg">
+			<div class="text">
+				<div class="url"></div>
+				<div class="details">
+					<span data-i18n="scopeLabel"></span>
+					<span class="scope"></span>
+					<a class="unregister" href="#" data-i18n="unregister"></a>
+				</div>
+				<div class="consent">
+					<button type="button" class="deny" data-i18n="deny"></button>
+					<button type="button" class="allow" data-i18n="allow"></button>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script src="common.js"></script>
+	<script src="popup.js"></script>
+</body>
+
+</html>

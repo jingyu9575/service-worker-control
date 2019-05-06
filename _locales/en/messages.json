@@ -1,0 +1,32 @@
+{
+	"extensionName": {
+		"message": "Service Worker Control"
+	},
+	"extensionDescription": {
+		"message": "Detect and control Service Workers on websites."
+	},
+	"zeroRegistered": {
+		"message": "No Service Worker registered"
+	},
+	"nRegistered": {
+		"message": "$1 Service Workers registered"
+	},
+	"nRegisteredNPending": {
+		"message": "$1 Service Workers registered, $2 awaiting consent"
+	},
+	"scopeLabel": {
+		"message": "Scope: "
+	},
+	"unregister": {
+		"message": "Unregister"
+	},
+	"requireConsent": {
+		"message": "Require user consent for new Service Worker registrations"
+	},
+	"allow": {
+		"message": "Allow"
+	},
+	"deny": {
+		"message": "Deny"
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"manifest_version": 2,
+	"applications": {
+		"gecko": {
+			"id": "service-worker-control@qw.thucfb.com",
+			"strict_min_version": "60.0"
+		}
+	},
+	"name": "__MSG_extensionName__",
+	"version": "0.1",
+	"description": "__MSG_extensionDescription__",
+	"icons": {
+		"48": "icons/icon.svg"
+	},
+	"permissions": [
+		"storage",
+		"<all_urls>"
+	],
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"content/inject.js"
+			],
+			"run_at": "document_start",
+			"all_frames": true
+		}
+	],
+	"background": {
+		"scripts": [
+			"common.js",
+			"background.js"
+		]
+	},
+	"page_action": {
+		"default_icon": "icons/icon.svg",
+		"default_popup": "popup.html"
+	},
+	"options_ui": {
+		"page": "options.html"
+	},
+	"default_locale": "en"
+}
