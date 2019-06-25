@@ -21,3 +21,15 @@ for (const input of document.querySelectorAll('[data-key]')) {
 	const placeholderI18n = input.dataset['placeholderI18n']
 	if (placeholderI18n) input.placeholder = browser.i18n.getMessage(placeholderI18n)
 }
+
+async function onClearHistoryClick() {
+	if (!confirm(browser.i18n.getMessage('confirmClearHistory'))) return
+	void (await notificationStorage).clear()
+}
+
+const enableNotificationHistory = document.querySelector(
+	'input[data-key="enableNotificationHistory"]')
+enableNotificationHistory.addEventListener('change', () => {
+	if (!enableNotificationHistory.checked) onClearHistoryClick()
+})
+document.getElementById('clear-history').addEventListener('click', onClearHistoryClick)

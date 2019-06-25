@@ -1,0 +1,58 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: caption;
+	font-size: 14px;
+}
+
+table {
+	display: grid;
+	grid-template-columns: auto 1fr 1fr 1fr 1fr;
+}
+
+thead, tbody, tr {
+	display: contents;
+}
+
+th, td {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+th {
+	font-weight: normal;
+	text-align: start;
+	border-bottom: 1px solid #d3d3d3;
+	position: sticky;
+	top: 0;
+	background: #fff;
+}
+
+td {
+	overflow-x: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+th, td {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+th:not(:first-of-type), td:not(:first-of-type) {
+	border-left: 1px solid #d3d3d3;
+}
+
+td:not(:first-of-type) {
+	border-left-color: transparent;
+}
+
+#no-storage-access {
+	margin-top: 16px;
+	text-align: center;
+}

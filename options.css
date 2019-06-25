@@ -1,3 +1,66 @@
+body {
+	margin-top: 8px;
+}
+
 .middle-aligned > * {
 	vertical-align: middle;
+}
+
+#history-section {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-column-gap: 4px;
+	grid-row-gap: 2px;
+	align-items: center;
+	margin-top: 8px;
+}
+
+#history-section > * {
+	grid-column: 2;
+}
+
+#history-label {
+	display: contents;
+}
+
+#history-buttons > * {
+	margin-inline-end: 4px;
+}
+
+.dialog-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	-webkit-appearance: none;
+	border: 1px solid #ccc;
+	padding: 4px 12px;
+	background: #eee;
+	min-width: 12ch;
+	color: inherit;
+	text-decoration: none;
+	cursor: default;
+	box-sizing: content-box;
+	font: inherit;
+}
+
+.dialog-button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+.dialog-button:not([disabled]):focus {
+	outline: 1px dotted #808080;
+	outline-offset: -2px;
+}
+
+.dialog-button:not([disabled]):hover {
+	background-color: #f8f8f8;
+}
+
+.dialog-button:not([disabled]):active {
+	background-color: #e2e2e2;
+}
+
+.dialog-button[disabled] {
+	opacity: 0.5;
 }

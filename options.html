@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title data-i18n="extensionName"></title>
 	<link rel="stylesheet" href="options.css">
+	<link rel="icon" href="icons/icon.svg">
 </head>
 
 <body>
@@ -12,6 +13,17 @@
 		<input data-key="requireConsent" type="checkbox">
 		<span data-i18n='requireConsent'></span>
 	</label>
+	<div id="history-section">
+		<label id="history-label">
+			<input data-key="enableNotificationHistory" type="checkbox">
+			<span data-i18n='enableNotificationHistory'></span>
+		</label>
+		<span data-i18n='enableNotificationHistoryDesc'></span>
+		<span id="history-buttons">
+			<a href="notifications-history.html" target="_blank" data-i18n="viewHistory" class="dialog-button"></a>
+			<button id='clear-history' data-i18n="clearHistory" class="dialog-button"></button>
+		</span>
+	</div>
 	<script src="common.js"></script>
 	<script src="options.js"></script>
 </body>

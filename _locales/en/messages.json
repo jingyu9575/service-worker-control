@@ -23,10 +23,46 @@
 	"requireConsent": {
 		"message": "Require user consent for new Service Worker registrations"
 	},
+	"enableNotificationHistory": {
+		"message": "Enable push notification history"
+	},
+	"enableNotificationHistoryDesc": {
+		"message": "* Only available for new Service Worker registrations after enabling. You may need to reopen the origin websites."
+	},
+	"viewHistory": {
+		"message": "View History"
+	},
+	"clearHistory": {
+		"message": "Clear History"
+	},
+	"confirmClearHistory": {
+		"message": "Clear the push notification history?"
+	},
 	"allow": {
 		"message": "Allow"
 	},
 	"deny": {
 		"message": "Deny"
+	},
+	"notificationHistory": {
+		"message": "Push notification history"
+	},
+	"time": {
+		"message": "Time"
+	},
+	"title": {
+		"message": "Title"
+	},
+	"body": {
+		"message": "Body"
+	},
+	"url": {
+		"message": "URL"
+	},
+	"scope": {
+		"message": "Scope"
+	},
+	"noStorageAccess": {
+		"message": "Cannot access internal storage."
 	}
 }

@@ -74,3 +74,47 @@ updateAllTabs()
 
 // Not needing `theme` permission [Firefox 62]
 try { browser.theme.onUpdated.addListener(updateAllTabs) } catch { }
+
+const swPreloadBuffer = new TextEncoder().encode(
+	`;(${serviceWorkerPreload})(${JSON.stringify(MESSAGE_URL)}, true);`)
+
+browser.webRequest.onBeforeRequest.addListener(async (
+	{ originUrl, requestBody, timeStamp }) => {
+	const message = JSON.parse(new TextDecoder().decode(requestBody.raw[0].bytes))
+	if (message.type === 'notification') try {
+		if (!(await browser.storage.local.get(
+			'enableNotificationHistory')).enableNotificationHistory)
+			return
+		if (message.isInjected) message.url = originUrl
+		delete message.type
+		message.timeStamp = timeStamp
+		void (await notificationStorage).set(undefined, message)
+	} catch (error) { console.error(error) }
+}, { urls: [MESSAGE_URL], types: ['xmlhttprequest'], tabId: -1 }, ['requestBody'])
+
+async function onSWHeadersReceived({ statusCode, incognito, requestId }) {
+	if (!(statusCode >= 200 && statusCode < 300) || incognito) return
+	const filter = browser.webRequest.filterResponseData(requestId)
+	filter.onstart = () => {
+		filter.write(swPreloadBuffer)
+		filter.disconnect()
+	}
+	return {}
+}
+
+async function updateEnableNotificationHistory() {
+	if ((await browser.storage.local.get(
+		'enableNotificationHistory')).enableNotificationHistory) {
+		browser.webRequest.onHeadersReceived.addListener(onSWHeadersReceived,
+			{ urls: ['<all_urls>'], types: ['script'], tabId: -1 }, ["blocking"])
+	} else {
+		browser.webRequest.onHeadersReceived.removeListener(onSWHeadersReceived)
+	}
+}
+void updateEnableNotificationHistory()
+browser.storage.onChanged.addListener((changes, areaName) => {
+	if (areaName !== 'local') return
+	if ('enableNotificationHistory' in changes) {
+		updateEnableNotificationHistory()
+	}
+})

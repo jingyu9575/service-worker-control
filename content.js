@@ -1,3 +1,5 @@
+serviceWorkerPreload(MESSAGE_URL, false)
+
 const consentMap = new Map()
 
 async function getRegistrations() {

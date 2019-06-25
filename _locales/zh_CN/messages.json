@@ -23,10 +23,46 @@
 	"requireConsent": {
 		"message": "新注册 Service Worker 需要用户确认"
 	},
+	"enableNotificationHistory": {
+		"message": "启用推送通知历史记录"
+	},
+	"enableNotificationHistoryDesc": {
+		"message": "* 仅对启用后注册的 Service Worker 有效。可能需要重新打开来源网站。"
+	},
+	"viewHistory": {
+		"message": "查看历史记录"
+	},
+	"clearHistory":{
+		"message": "清除历史记录"
+	},
+	"confirmClearHistory": {
+		"message": "是否清除推送通知历史记录？"
+	},
 	"allow": {
 		"message": "允许"
 	},
 	"deny": {
 		"message": "拒绝"
+	},
+	"notificationHistory": {
+		"message": "推送通知历史记录"
+	},
+	"time": {
+		"message": "时间"
+	},
+	"title": {
+		"message": "标题"
+	},
+	"body": {
+		"message": "正文"
+	},
+	"url": {
+		"message": "网址"
+	},
+	"scope": {
+		"message": "范围"
+	},
+	"noStorageAccess": {
+		"message": "无法访问内部存储。"
 	}
 }

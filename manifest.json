@@ -7,14 +7,16 @@
 		}
 	},
 	"name": "__MSG_extensionName__",
-	"version": "0.3",
+	"version": "1.0a0",
 	"description": "__MSG_extensionDescription__",
 	"icons": {
 		"48": "icons/icon.svg"
 	},
 	"permissions": [
 		"storage",
-		"<all_urls>"
+		"<all_urls>",
+		"webRequest",
+		"webRequestBlocking"
 	],
 	"content_scripts": [
 		{
@@ -22,7 +24,8 @@
 				"<all_urls>"
 			],
 			"js": [
-				"content/inject.js"
+				"preload.js",
+				"content.js"
 			],
 			"run_at": "document_start",
 			"all_frames": true
@@ -31,6 +34,7 @@
 	"background": {
 		"scripts": [
 			"common.js",
+			"preload.js",
 			"background.js"
 		]
 	},
