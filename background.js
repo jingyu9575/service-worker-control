@@ -79,18 +79,21 @@ const swPreloadBuffer = new TextEncoder().encode(
 	`;(${serviceWorkerPreload})(${JSON.stringify(MESSAGE_URL)}, true);`)
 
 browser.webRequest.onBeforeRequest.addListener(async (
-	{ originUrl, requestBody, timeStamp }) => {
-	const message = JSON.parse(new TextDecoder().decode(requestBody.raw[0].bytes))
-	if (message.type === 'notification') try {
-		if (!(await browser.storage.local.get(
-			'enableNotificationHistory')).enableNotificationHistory)
-			return
-		if (message.isInjected) message.url = originUrl
-		delete message.type
-		message.timeStamp = timeStamp
-		void (await notificationStorage).set(undefined, message)
-	} catch (error) { console.error(error) }
-}, { urls: [MESSAGE_URL], types: ['xmlhttprequest'], tabId: -1 }, ['requestBody'])
+	{ originUrl, requestBody: { raw }, timeStamp }) => {
+	try {
+		const message = JSON.parse(new TextDecoder().decode(raw[0].bytes))
+		if (message.type === 'notification') try {
+			if (!(await browser.storage.local.get(
+				'enableNotificationHistory')).enableNotificationHistory)
+				return
+			if (message.isInjected) message.url = originUrl
+			delete message.type
+			message.timeStamp = timeStamp
+			void (await notificationStorage).set(undefined, message)
+		} catch (error) { console.error(error) }
+	} finally { return { cancel: true } }
+}, { urls: [MESSAGE_URL], types: ['xmlhttprequest'], tabId: -1 },
+	['requestBody', 'blocking'])
 
 async function onSWHeadersReceived({ statusCode, incognito, requestId }) {
 	if (!(statusCode >= 200 && statusCode < 300) || incognito) return
