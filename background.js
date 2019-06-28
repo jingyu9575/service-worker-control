@@ -121,3 +121,14 @@ browser.storage.onChanged.addListener((changes, areaName) => {
 		updateEnableNotificationHistory()
 	}
 })
+
+browser.runtime.onMessageExternal.addListener(message => {
+	try {
+		if (typeof message !== 'object' || !message) return
+		if (message.type === 'open-notifications-history') {
+			browser.tabs.create(
+				{ url: browser.runtime.getURL('notifications-history.html') })
+			return Promise.resolve(true)
+		}
+	} catch (error) { console.error(error) }
+})
