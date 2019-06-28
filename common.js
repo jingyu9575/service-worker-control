@@ -6,7 +6,7 @@ function applyI18n(node = document) {
 async function getAllRegistrations(tabId) {
 	const uniqueSet = new Set()
 	return [].concat(...await browser.tabs.executeScript(tabId, {
-		code: 'getAllRegistrations()',
+		code: 'try { getAllRegistrations() } catch { [] }',
 		runAt: 'document_start',
 		allFrames: true,
 	})).filter(reg => {
