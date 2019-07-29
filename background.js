@@ -76,7 +76,7 @@ updateAllTabs()
 try { browser.theme.onUpdated.addListener(updateAllTabs) } catch { }
 
 const swPreloadBuffer = new TextEncoder().encode(
-	`;(${serviceWorkerPreload})(${JSON.stringify(MESSAGE_URL)}, true);`)
+	`;(${serviceWorkerPreload})(${JSON.stringify(MESSAGE_URL)}, true);\n`)
 
 browser.webRequest.onBeforeRequest.addListener(async (
 	{ originUrl, requestBody: { raw }, timeStamp }) => {
